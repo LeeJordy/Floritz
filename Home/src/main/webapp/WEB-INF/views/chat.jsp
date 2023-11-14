@@ -2,87 +2,107 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Insert title here</title>
-<link rel="shortcut icon" href="/img/head.png">
-<!-- Bootstrap icons-->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>chatbot</title>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<!-- Simple line icons-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
 <!-- Google fonts-->
-<link rel="preconnect" href="https://fonts.gstatic.com" />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="css/chatbot.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/main.css" />
 <link href="css/styles.css" rel="stylesheet" />
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+<link href="css/chatbot.css" rel="stylesheet" />
+<style>
+  
+  </style>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <script type="text/javascript">
+    var ws;
+    function wsOpen() {
+    	ws = new WebSocket("ws://" + location.host + "/chating");
+    	wsEvt();
+    }
+    function wsEvt() {
+    	ws.onopen = function(data){
+    		// 소켓이 열리면 초기화 세팅하기
+	  	}
+    	ws.onmessage = function(data) {
+    		var msg = data.data;
+    		if(msg != null && msg.trim() != ''){
+    			$("#chating").append("<p>" + msg + "</p>");
+    		}
+    } 
+    document.addEventListener("keypress", function(e) {
+    	if(e.keyCode == 13){ // enter press
+    		send();
+    	}
+    });
+    }
+    function chatName(){
+    	var userName = $("#userName").val();
+    	if(userName == null || userName.trim() == ""){
+    		alert("사용자 이름을 입력해주세요");
+    		$("#userName").focus();
+    	}else{
+    		wsOpen();
+    		$("#yourName").hide();
+    		$("#yourMsg").show();
+    	}
+    }
+    function send() {
+    	var uN = $("#userName").val();
+    	var msg = $("#chatting").val();
+    	ws.send(uN+" : "+msg);
+    	$('#chatting').val("");
+    }
+  </script>
+
 </head>
+
+
+
 <body>
 <jsp:include page="/WEB-INF/resources/header.jsp" />
-<div class="container">
-<br><br>
-<h3 class=" text-center">chatbot</h3>
-<div class="messaging">
-      <div class="inbox_msg">
-        <div class="mesgs">
-          <div class="msg_history">
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test which is a new approach to have all
-                    solutions</p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test, which is a new approach to have</p>
-                  <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Apollo University, Delhi, India Test</p>
-                <span class="time_date"> 11:01 AM    |    Today</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>We work directly with our designers and suppliers,
-                    and sell direct to you, which means quality, exclusive
-                    products, at a price anyone can afford.</p>
-                  <span class="time_date"> 11:01 AM    |    Today</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button"><i class="bi bi-send"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+<div id="container" class="container">
+	<h1>ChatBot</h1>
+	<div id="chating" class="chating">
+	</div>
+	
+	<div id="yourName">
+		<table>
+			<tr>
+				<th>닉네임</th>
+				<th><input class="form-control form-control-sm" type="text" name="userName" id="userName" /></th>
+				<th><button class="btn btn-sm btn-primary" onclick="chatName()" id="startBtn">등록</button></th>
+			</tr>
+		</table>
+	</div>
+	<div id="yourMsg">
+		<table>
+		<tr>
+			<th>메세지</th>
+			<th><input class="form-control form-control-sm" id="chating" placeholder="보내실 메세지를 입력하세요."></th>
+			<th><button class="btn btn-sm btn-primary" onclick="send()" id="sendBtn">보내기</button></th>
+		</tr>
+		</table>
+	</div>
+</div>
 </body>
 </html>
 

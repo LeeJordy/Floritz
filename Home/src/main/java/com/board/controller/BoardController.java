@@ -25,11 +25,11 @@ public class BoardController {
 	@RequestMapping("/List")
 	public  ModelAndView  list() {
 		List<BoardVo>  boardList = boardMapper.boardList();		
-		System.out.println(boardList);
+		
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("brdList", boardList);
-		mv.setViewName("list");
+		mv.setViewName("/board/list");
 		return mv;
 	}
 	
@@ -127,7 +127,7 @@ public class BoardController {
 	@ResponseBody
 	public  List<CommentVo>  commentAdd(CommentVo vo) {
 		
-		System.out.println("comment:" + vo);
+		
 		// 넘어온 정보를 댓글로 저장
 		boardMapper.commentAdd( vo );
 		

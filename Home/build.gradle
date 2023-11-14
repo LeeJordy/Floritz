@@ -34,6 +34,12 @@ dependencies {
 	implementation 'org.mybatis:mybatis-spring'
 	implementation 'org.mybatis:mybatis'
 	
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.7.17'
+	// https://mvnrepository.com/artifact/org.java-websocket/Java-WebSocket
+	implementation group: 'org.java-websocket', name: 'Java-WebSocket', version: '1.5.3'
+	
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 }
 
