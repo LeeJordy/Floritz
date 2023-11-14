@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.board.mapper.BoardMapper">
+
+	<!-- 단체 예약 목록 -->
+    <select id  	  ="getBoard" 
+    		resultType="com.board.domain.BoardDTO">
+    		
+        SELECT   COMPANYNAME, COMPANYIMG, DETAILEDIMG, ANNOUNCEMENT,
+        	     REPNUMBER, DAYOFF, BREAKTIME, COMPANY_ADDRESS AS COMPANYADDRESS
+        FROM     COMPANYADDINFO, COMPANY
+        ORDER BY COMPANYNAME ASC
+    </select>
+    
+    <!-- 상세보기 -->
+    <select id  	  ="viewBoard" 
+            resultType="com.board.domain.BoardDTO">
+        SELECT    c.*, ci.COMPANYIMG, ci.DETAILEDIMG, ci.ANNOUNCEMENT, ci.REPNUMBER, 
+                  ci.DAYOFF, ci.BREAKTIME
+        FROM      COMPANY c
+        LEFT JOIN COMPANYADDINFO ci on c.COMPANY_NAME = ci.COMPANYNAME
+    </select>
+    
+</mapper>
