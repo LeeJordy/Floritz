@@ -1,5 +1,5 @@
 # Floritz
-<img src="https://capsule-render.vercel.app/api?type=venom&color=auto&height=300&section=header&text=Floritz%20단체예약&fontSize=90" />
+<img src="https://capsule-render.vercel.app/api?type=venom&color=auto&height=300&section=header&text=Floritz%20&fontSize=90" />
 
  주제 : SpringBoot, Open API, Oracle를 활용한 단체 예약 정보 제공 및 커뮤니티 사이트 구현
 - 예약 서비스 수요가 늘어남에 따라 단체예약을 한 번에 도와주는 서비스 단체 
