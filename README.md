@@ -1,6 +1,9 @@
 <img src="https://capsule-render.vercel.app/api?type=venom&color=auto&height=300&section=header&text=Floritz%20&fontSize=90" />
 
- 주제 : SpringBoot, Open API, Oracle를 활용한 단체 예약 정보 제공 및 커뮤니티 사이트 구현
+<div align=center>
+ <h3>📚 주제 📚</h3>
+ <p>✨ SpringBoot, Open API, Oracle를 활용한 단체 예약 정보 제공 및 커뮤니티 사이트 구현 ✨</p>
+
 - 예약 서비스 수요가 늘어남에 따라 단체예약을 한 번에 도와주는 서비스 단체 
  예약 시 전화로 예약하는 불편함으로 단체 예약이 가능한 업체와 바로 연결하여
  실시간 예약이 가능하게 하는 서비스, 단체 예약 시 할인, 제약 등 정보제공
@@ -25,3 +28,7 @@
 - Oven 자료 제작
 
 
+<img src="https://img.shields.io/badge/아이콘내용-바탕색?style=flat&logo=로고이름&logoColor=white"/>
+
+
+</div>
